@@ -1,0 +1,25 @@
+{
+  "name": "customcogs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Кастомные коги для бота Управление Департаментами (ER:LC Россия)",
+  "scripts": {
+    "test:mvd": "node index.js MVD",
+    "test:fsb": "node index.js FSB",
+    "test:mchs": "node index.js MCHS",
+    "test:minzdrav": "node index.js Minzdrav"
+  },
+  "dependencies": {
+    "discord.js": "^14.23.2",
+    "dotenv": "^16.6.1",
+    "@prisma/client": "^7.4.0",
+    "prisma": "^7.4.0",
+    "winston": "^3.17.0",
+    "luxon": "^3.7.2",
+    "axios": "^1.12.2",
+    "uuid": "^9.0.1"
+  },
+  "engines": {
+    "node": ">=18.17"
+  }
+}

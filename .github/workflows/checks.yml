@@ -1,0 +1,34 @@
+name: CustomCogs Checks
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  syntax:
+    name: Syntax Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: find . -name '*.js' -not -path './node_modules/*' -exec node --check {} \;
+        name: Check JS syntax
+
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check forbidden patterns
+        run: |
+          BAD=$(grep -rn "eval(" --include='*.js' . | grep -v node_modules || true)
+          if [ -n "$BAD" ]; then echo "eval() found:"; echo "$BAD"; exit 1; fi
+
+          BAD=$(grep -rn "require.*process\.env" --include='*.js' . | grep -v node_modules | grep -v '.env' || true)
+          if [ -n "$BAD" ]; then echo "process.env in require() — use ticket:"; echo "$BAD"; exit 1; fi

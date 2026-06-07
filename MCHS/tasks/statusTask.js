@@ -1,11 +1,11 @@
 const { ActivityType } = require('discord.js');
 
 const statusList = [
-  { name: "Сотрудники МВД", type: ActivityType.Watching },
-  { name: "МВД России", type: ActivityType.Watching },
+  { name: "Сотрудники МЧС", type: ActivityType.Watching },
+  { name: "МЧС России", type: ActivityType.Watching },
   { name: "Жалобы и Обращения", type: ActivityType.Watching },
-  { name: "Повышения и Наказания", type: ActivityType.Watching },
-  { name: "База Данных", type: ActivityType.Watching }
+  { name: "Вызовы МЧС", type: ActivityType.Watching },
+  { name: "Лесные Пожары", type: ActivityType.Watching }
 ];
 let currentIndex = 0;
 
